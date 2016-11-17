@@ -60,6 +60,7 @@ public class JanelaAdmin extends javax.swing.JFrame {
         m_options = new javax.swing.JMenu();
         mI_add_music = new javax.swing.JMenuItem();
         mI_remove_music = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mI_add_playlist = new javax.swing.JMenuItem();
         mI_remove_playlist = new javax.swing.JMenuItem();
         mI_promove_user = new javax.swing.JMenuItem();
@@ -275,6 +276,15 @@ public class JanelaAdmin extends javax.swing.JFrame {
         });
         m_options.add(mI_remove_music);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/refresh_16.png"))); // NOI18N
+        jMenuItem1.setText("Mover Música");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        m_options.add(jMenuItem1);
+
         mI_add_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/star_full.png"))); // NOI18N
         mI_add_playlist.setText("Adicionar Playlist");
         mI_add_playlist.addActionListener(new java.awt.event.ActionListener() {
@@ -435,6 +445,11 @@ public class JanelaAdmin extends javax.swing.JFrame {
         ru.setVisible(true);
     }//GEN-LAST:event_mI_remove_userActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        MoverMusica mm = new MoverMusica();
+        mm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,6 +495,7 @@ public class JanelaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton b_remove_music;
     private javax.swing.JButton b_stop;
     private javax.swing.JMenuBar barra_menu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel l_album;
