@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mediaplayer;
+package model;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +16,7 @@ public class Usuario {
     private String email;
     private String senha;
     private int nivel_acesso;
+    private ArrayList<Playlist> playlists;
 
     /**
      * @return the nome

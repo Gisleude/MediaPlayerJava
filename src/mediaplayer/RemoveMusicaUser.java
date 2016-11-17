@@ -34,7 +34,7 @@ public class RemoveMusicaUser extends javax.swing.JFrame {
         b_remove_music = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Remover Música");
         setResizable(false);
 
@@ -57,6 +57,11 @@ public class RemoveMusicaUser extends javax.swing.JFrame {
         });
 
         b_cancel.setText("Cancelar");
+        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,6 +120,10 @@ public class RemoveMusicaUser extends javax.swing.JFrame {
     private void b_remove_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_remove_musicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_remove_musicActionPerformed
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_b_cancelActionPerformed
 
     /**
      * @param args the command line arguments

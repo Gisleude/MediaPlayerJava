@@ -33,11 +33,12 @@ public class RemoveUsuario extends javax.swing.JFrame {
         b_remove_user = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Remover Usuário");
         setResizable(false);
 
         l_remove_user.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_remove_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/remove_male_user_64.png"))); // NOI18N
         l_remove_user.setText("Remover Usuário");
 
         l_user.setText("Usuário:");
@@ -45,6 +46,11 @@ public class RemoveUsuario extends javax.swing.JFrame {
         b_remove_user.setText("Remover Usuário");
 
         b_cancel.setText("Cancelar");
+        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,12 +64,13 @@ public class RemoveUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(b_remove_user)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(l_remove_user))
-                    .addComponent(t_user, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_user))
+                .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(l_remove_user)
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,11 +85,15 @@ public class RemoveUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_remove_user)
                     .addComponent(b_cancel))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_b_cancelActionPerformed
 
     /**
      * @param args the command line arguments

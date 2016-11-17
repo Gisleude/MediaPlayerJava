@@ -5,12 +5,15 @@
  */
 package mediaplayer;
 
+import model.Usuario;
+
 /**
  *
  * @author gisleude
  */
 public class MoverMusica extends javax.swing.JFrame {
-
+    
+    Usuario usuario;
     /**
      * Creates new form MoverMusica
      */
@@ -38,11 +41,12 @@ public class MoverMusica extends javax.swing.JFrame {
         b_move_music = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Mover Música");
         setResizable(false);
 
         l_move_music.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_move_music.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/refresh_64.png"))); // NOI18N
         l_move_music.setText("Mover Música de Playlist");
 
         l_music.setText("Música:");
@@ -59,18 +63,20 @@ public class MoverMusica extends javax.swing.JFrame {
         });
 
         b_cancel.setText("Cancelar");
+        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(l_move_music))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(l_to_playlist)
                             .addComponent(l_by_playlist)
@@ -83,8 +89,12 @@ public class MoverMusica extends javax.swing.JFrame {
                                 .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(t_music)
                             .addComponent(t_by_playlist)
-                            .addComponent(t_to_playlist))))
-                .addGap(84, 84, 84))
+                            .addComponent(t_to_playlist))
+                        .addGap(84, 84, 84))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(l_move_music)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +117,7 @@ public class MoverMusica extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_move_music)
                     .addComponent(b_cancel))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,6 +139,10 @@ public class MoverMusica extends javax.swing.JFrame {
     private void b_move_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move_musicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_move_musicActionPerformed
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+       dispose();
+    }//GEN-LAST:event_b_cancelActionPerformed
 
     /**
      * @param args the command line arguments

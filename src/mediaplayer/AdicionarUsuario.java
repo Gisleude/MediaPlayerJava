@@ -5,12 +5,16 @@
  */
 package mediaplayer;
 
+import model.Usuario;
+
 /**
  *
  * @author gisleude
  */
 public class AdicionarUsuario extends javax.swing.JFrame {
 
+    
+    Usuario usuario;
     /**
      * Creates new form AdicionarUsuario
      */
@@ -42,11 +46,12 @@ public class AdicionarUsuario extends javax.swing.JFrame {
         b_add_user = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Adicionar Usuário");
         setResizable(false);
 
         l_add_user.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_add_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add_male_user_64.png"))); // NOI18N
         l_add_user.setText("Adicionar Usuário");
 
         l_user.setText("Usuário:");
@@ -64,6 +69,11 @@ public class AdicionarUsuario extends javax.swing.JFrame {
         b_add_user.setText("Adicionar");
 
         b_cancel.setText("Cancelar");
+        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,7 +102,7 @@ public class AdicionarUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(l_add_user)
-                .addGap(107, 107, 107))
+                .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +151,10 @@ public class AdicionarUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_b_cancelActionPerformed
 
     /**
      * @param args the command line arguments

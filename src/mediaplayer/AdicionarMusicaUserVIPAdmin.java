@@ -5,6 +5,8 @@
  */
 package mediaplayer;
 
+import model.Usuario;
+
 /**
  *
  * @author gisleude
@@ -14,6 +16,7 @@ public class AdicionarMusicaUserVIPAdmin extends javax.swing.JFrame {
     /**
      * Creates new form AdicionarMusica
      */
+    Usuario usuario;
     public AdicionarMusicaUserVIPAdmin() {
         initComponents();
     }
@@ -36,11 +39,12 @@ public class AdicionarMusicaUserVIPAdmin extends javax.swing.JFrame {
         l_playlist = new javax.swing.JLabel();
         t_playlist = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Adicionar Música");
         setResizable(false);
 
         l_add_music.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_add_music.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/music_note_64.png"))); // NOI18N
         l_add_music.setText("Adicionar Música");
 
         t_music.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +63,11 @@ public class AdicionarMusicaUserVIPAdmin extends javax.swing.JFrame {
         });
 
         b_cancel.setText("Cancelar");
+        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelActionPerformed(evt);
+            }
+        });
 
         l_playlist.setText("Playlist:");
 
@@ -72,18 +81,16 @@ public class AdicionarMusicaUserVIPAdmin extends javax.swing.JFrame {
                     .addComponent(l_playlist)
                     .addComponent(l_music))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(b_add_music, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(t_music, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addComponent(t_playlist))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_add_music)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(b_add_music, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(t_music, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(t_playlist)))
                 .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(l_add_music)
-                .addGap(93, 93, 93))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +109,7 @@ public class AdicionarMusicaUserVIPAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_add_music)
                     .addComponent(b_cancel))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,6 +133,10 @@ public class AdicionarMusicaUserVIPAdmin extends javax.swing.JFrame {
     private void b_add_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_add_musicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_add_musicActionPerformed
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_b_cancelActionPerformed
 
     /**
      * @param args the command line arguments

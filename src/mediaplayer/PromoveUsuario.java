@@ -35,11 +35,12 @@ public class PromoveUsuario extends javax.swing.JFrame {
         l_nivel = new javax.swing.JLabel();
         c_nivel = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Promover Usuário");
         setResizable(false);
 
         l_promove_user.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_promove_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/edit_male_user_64.png"))); // NOI18N
         l_promove_user.setText("Promover Usuário");
 
         l_user.setText("Usuário:");
@@ -72,19 +73,20 @@ public class PromoveUsuario extends javax.swing.JFrame {
                         .addComponent(b_promove_user)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(l_promove_user))
                     .addComponent(t_user)
-                    .addComponent(c_nivel, 0, 235, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(c_nivel, 0, 251, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(l_promove_user)
+                .addGap(68, 68, 68))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(l_promove_user)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_user)
                     .addComponent(t_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -103,7 +105,7 @@ public class PromoveUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
-        // TODO add your handling code here:
+       dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
     /**

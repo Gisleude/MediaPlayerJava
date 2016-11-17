@@ -11,6 +11,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mI_sub_vip">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/accept_male_user_16.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Virar Usu&#xe1;rio VIP"/>
               </Properties>
               <Events>
@@ -19,25 +22,46 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mI_sub_admin">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/accept_business_user_16.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Virar Administrador"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mI_sub_adminActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mI_add_music">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/music_note.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Adicionar M&#xfa;sica"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mI_add_musicActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mI_remove_music">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Remover M&#xfa;sica"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mI_remove_musicActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="o_exit">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/shut_down_16.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="o_exitMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -129,6 +153,7 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="b_play" min="-2" pref="68" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="b_pause" min="-2" pref="73" max="-2" attributes="0"/>
@@ -179,10 +204,10 @@
                       <Component id="t_music" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="b_play" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b_pause" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="b_stop" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="b_play" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="b_pause" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="b_stop" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -210,7 +235,7 @@
                   <Component id="l_music_options" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="b_remove_music" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -265,7 +290,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="b_play">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Play"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/play.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_playActionPerformed"/>
@@ -273,12 +300,16 @@
         </Component>
         <Component class="javax.swing.JButton" name="b_pause">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pause"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/pause.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="b_stop">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Parar"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/stop.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="l_q_volume">
@@ -295,6 +326,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="l_atual_music">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/megaphone_24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="M&#xfa;sica Atual"/>
           </Properties>
         </Component>
@@ -305,14 +339,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="l_list_musics" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="100" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="painel_lista" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="painel_lista" alignment="1" pref="266" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="l_list_musics" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -350,6 +385,9 @@
         </Container>
         <Component class="javax.swing.JLabel" name="l_list_musics">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/music_note.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Lista de M&#xfa;sicas"/>
           </Properties>
         </Component>

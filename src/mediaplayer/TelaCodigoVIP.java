@@ -5,6 +5,7 @@
  */
 package mediaplayer;
 
+import model.Usuario;
 import conexaoDb.ConexaoDb;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,15 +21,15 @@ public class TelaCodigoVIP extends javax.swing.JFrame {
 
     private int code;
     public Usuario user;
-    
+
     public void setCode(int code){
         this.code = code;
     }
-    
+
     public int getCode(){
         return code;
     }
-    
+
     ConexaoDb conecta = new ConexaoDb(); // Variavel global de conexao
     /**
      * Creates new form TelaCodigoVIP
@@ -55,9 +56,11 @@ public class TelaCodigoVIP extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Código VIP");
+        setLocation(new java.awt.Point(500, 200));
         setResizable(false);
 
         l_code_vip.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_code_vip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/key_64.png"))); // NOI18N
         l_code_vip.setText("Código VIP");
 
         l_desc_code_vip.setText("Digite o código de usuário VIP");
@@ -81,29 +84,26 @@ public class TelaCodigoVIP extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(t_code_vip, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(b_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_desc_code_vip)
-                                .addGap(8, 8, 8))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(l_code_vip)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(l_code_vip)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(t_code_vip, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(b_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(b_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(l_desc_code_vip)
+                            .addGap(8, 8, 8))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(l_code_vip)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(l_desc_code_vip)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(t_code_vip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,14 +111,15 @@ public class TelaCodigoVIP extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_submit)
                     .addComponent(b_cancel))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
-       conecta.desconecta();
+       Login login = new Login();
+       login.setVisible(true);
        dispose();
     }//GEN-LAST:event_b_cancelActionPerformed
 
@@ -135,8 +136,8 @@ public class TelaCodigoVIP extends javax.swing.JFrame {
                 pst.setString(4,"2");
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(rootPane,"Registrado com sucesso");
-                JanelaUserVIP janelavip = new JanelaUserVIP();
-                janelavip.setVisible(true);
+                Login login = new Login();
+                login.setVisible(true);
                 dispose();
             }
         else{
@@ -154,7 +155,7 @@ public class TelaCodigoVIP extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

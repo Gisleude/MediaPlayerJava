@@ -5,6 +5,8 @@
  */
 package mediaplayer;
 
+import model.Usuario;
+
 /**
  *
  * @author gisleude
@@ -14,6 +16,7 @@ public class RemoveMusicaUserVIPAdmin extends javax.swing.JFrame {
     /**
      * Creates new form AdicionarMusica
      */
+    Usuario usuario;
     public RemoveMusicaUserVIPAdmin() {
         initComponents();
     }
@@ -36,7 +39,7 @@ public class RemoveMusicaUserVIPAdmin extends javax.swing.JFrame {
         l_playlist = new javax.swing.JLabel();
         t_playlist = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MediaPlayer - Remover Música");
         setResizable(false);
 
@@ -59,6 +62,11 @@ public class RemoveMusicaUserVIPAdmin extends javax.swing.JFrame {
         });
 
         b_cancel.setText("Cancelar");
+        b_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelActionPerformed(evt);
+            }
+        });
 
         l_playlist.setText("Playlist:");
 
@@ -126,6 +134,10 @@ public class RemoveMusicaUserVIPAdmin extends javax.swing.JFrame {
     private void b_remove_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_remove_musicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_remove_musicActionPerformed
+
+    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+         dispose();
+    }//GEN-LAST:event_b_cancelActionPerformed
 
     /**
      * @param args the command line arguments

@@ -29,6 +29,16 @@ public class ConexaoDb {
         }
     }
     
+    public void executaSQL(String sql){
+        try {
+            stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery(sql);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro no executaSQL!\n Erro: "+ ex.getMessage());
+        }
+    }
+    
     // Metodo para fechar a conexão com o banco de dados
     public void desconecta(){
         try{

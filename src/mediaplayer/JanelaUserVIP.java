@@ -5,6 +5,8 @@
  */
 package mediaplayer;
 
+import model.Usuario;
+
 /**
  *
  * @author gisleude
@@ -14,6 +16,7 @@ public class JanelaUserVIP extends javax.swing.JFrame {
     /**
      * Creates new form JanelaUser
      */
+    Usuario usuario;
     public JanelaUserVIP() {
         initComponents();
         this.l_q_volume.setText(Integer.toString(this.s_volume.getValue())+"%");
@@ -87,16 +90,21 @@ public class JanelaUserVIP extends javax.swing.JFrame {
 
         l_volume.setText("Volume:");
 
-        b_play.setText("Play");
+        b_play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/play.png"))); // NOI18N
         b_play.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_playActionPerformed(evt);
             }
         });
 
-        b_pause.setText("Pause");
+        b_pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pause.png"))); // NOI18N
 
-        b_stop.setText("Parar");
+        b_stop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/stop.png"))); // NOI18N
+        b_stop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_stopActionPerformed(evt);
+            }
+        });
 
         l_music_options.setText("Opções para a música");
 
@@ -114,6 +122,7 @@ public class JanelaUserVIP extends javax.swing.JFrame {
             }
         });
 
+        l_atual_music.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/megaphone_24.png"))); // NOI18N
         l_atual_music.setText("Música Atual");
 
         javax.swing.GroupLayout p_musicLayout = new javax.swing.GroupLayout(p_music);
@@ -125,6 +134,27 @@ public class JanelaUserVIP extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(s_volume, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
+                .addGap(0, 98, Short.MAX_VALUE)
+                .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
+                        .addComponent(l_q_volume)
+                        .addGap(123, 123, 123))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
+                        .addComponent(l_atual_music)
+                        .addGap(95, 95, 95))))
+            .addGroup(p_musicLayout.createSequentialGroup()
+                .addComponent(l_music)
+                .addGap(5, 5, 5)
+                .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
+                        .addComponent(b_play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_pause, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_music))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
                 .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -141,32 +171,12 @@ public class JanelaUserVIP extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(t_album, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(t_artist)
-                            .addComponent(t_year, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-            .addGroup(p_musicLayout.createSequentialGroup()
-                .addComponent(l_music)
-                .addGap(5, 5, 5)
-                .addComponent(t_music)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t_year, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
-                        .addComponent(l_q_volume)
-                        .addGap(123, 123, 123))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
+                        .addGap(0, 91, Short.MAX_VALUE)
                         .addComponent(l_music_options)
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
-                        .addComponent(b_play, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_pause, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_musicLayout.createSequentialGroup()
-                        .addComponent(l_atual_music)
-                        .addGap(95, 95, 95))))
+                        .addGap(66, 66, 66)))
+                .addContainerGap())
         );
         p_musicLayout.setVerticalGroup(
             p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,16 +188,16 @@ public class JanelaUserVIP extends javax.swing.JFrame {
                     .addComponent(t_music, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b_play)
                     .addComponent(b_stop)
-                    .addComponent(b_pause))
+                    .addComponent(b_pause)
+                    .addComponent(b_play))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(s_volume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l_volume))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(l_q_volume)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_artist)
                     .addComponent(t_artist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,13 +215,15 @@ public class JanelaUserVIP extends javax.swing.JFrame {
                 .addGroup(p_musicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_remove_music)
                     .addComponent(b_move_music))
-                .addGap(59, 59, 59))
+                .addGap(75, 75, 75))
         );
 
         painel_lista.setViewportView(lista_playlists);
 
+        l_list_playlists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/star_full.png"))); // NOI18N
         l_list_playlists.setText("Playlists");
 
+        l_list_musics.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/music_note.png"))); // NOI18N
         l_list_musics.setText("Músicas da Playlist");
 
         jScrollPane1.setViewportView(lista_musicas);
@@ -249,27 +261,68 @@ public class JanelaUserVIP extends javax.swing.JFrame {
 
         m_options.setText("Opções");
 
+        mI_sub_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/accept_business_user_16.png"))); // NOI18N
         mI_sub_admin.setText("Virar Administrador");
+        mI_sub_admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mI_sub_adminActionPerformed(evt);
+            }
+        });
         m_options.add(mI_sub_admin);
 
+        mI_add_music.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/music_note.png"))); // NOI18N
         mI_add_music.setText("Adicionar Música");
+        mI_add_music.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mI_add_musicActionPerformed(evt);
+            }
+        });
         m_options.add(mI_add_music);
 
         mI_remove_music.setText("Remover Música");
+        mI_remove_music.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mI_remove_musicActionPerformed(evt);
+            }
+        });
         m_options.add(mI_remove_music);
 
+        mI_add_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/star_full.png"))); // NOI18N
         mI_add_playlist.setText("Adicionar Playlist");
+        mI_add_playlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mI_add_playlistActionPerformed(evt);
+            }
+        });
         m_options.add(mI_add_playlist);
 
+        mI_remove_playlist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/star_empty.png"))); // NOI18N
         mI_remove_playlist.setText("Remover Playlist");
+        mI_remove_playlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mI_remove_playlistActionPerformed(evt);
+            }
+        });
         m_options.add(mI_remove_playlist);
 
+        mI_add_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add_male_user.png"))); // NOI18N
         mI_add_user.setText("Adicionar Usuário");
+        mI_add_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mI_add_userActionPerformed(evt);
+            }
+        });
         m_options.add(mI_add_user);
 
         barra_menu.add(m_options);
 
+        o_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/shut_down_16.png"))); // NOI18N
         o_exit.setText("Sair");
+        o_exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                o_exitMouseClicked(evt);
+            }
+        });
         barra_menu.add(o_exit);
 
         setJMenuBar(barra_menu);
@@ -291,12 +344,11 @@ public class JanelaUserVIP extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(p_list_music, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jSeparator1))
-                        .addComponent(p_music, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(p_music, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -313,6 +365,45 @@ public class JanelaUserVIP extends javax.swing.JFrame {
     private void b_move_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move_musicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_move_musicActionPerformed
+
+    private void o_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_o_exitMouseClicked
+        System.exit(0);
+        dispose();
+    }//GEN-LAST:event_o_exitMouseClicked
+
+    private void mI_sub_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mI_sub_adminActionPerformed
+        TelaCodigoAdmin tca = new TelaCodigoAdmin();
+        tca.setVisible(true);
+    }//GEN-LAST:event_mI_sub_adminActionPerformed
+
+    private void mI_add_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mI_add_musicActionPerformed
+        AdicionarMusicaUserVIPAdmin amuva = new AdicionarMusicaUserVIPAdmin();
+        amuva.setVisible(true);
+    }//GEN-LAST:event_mI_add_musicActionPerformed
+
+    private void mI_remove_musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mI_remove_musicActionPerformed
+        RemoveMusicaUserVIPAdmin rmuva = new RemoveMusicaUserVIPAdmin();
+        rmuva.setVisible(true);
+    }//GEN-LAST:event_mI_remove_musicActionPerformed
+
+    private void mI_add_playlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mI_add_playlistActionPerformed
+        AdicionarPlaylist ap = new AdicionarPlaylist();
+        ap.setVisible(true);
+    }//GEN-LAST:event_mI_add_playlistActionPerformed
+
+    private void mI_remove_playlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mI_remove_playlistActionPerformed
+        RemovePlaylist rp = new RemovePlaylist();
+        rp.setVisible(true);
+    }//GEN-LAST:event_mI_remove_playlistActionPerformed
+
+    private void mI_add_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mI_add_userActionPerformed
+        AdicionarUsuario au = new AdicionarUsuario();
+        au.setVisible(true);
+    }//GEN-LAST:event_mI_add_userActionPerformed
+
+    private void b_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_stopActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_stopActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,13 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package mediaplayer;
 
+import model.Usuario;
 import conexaoDb.ConexaoDb;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,15 +19,15 @@ import javax.swing.JOptionPane;
  * @author gisleude
  */
 public class Login extends javax.swing.JFrame {
-    
+
     ConexaoDb conecta = new ConexaoDb(); // Variavel global de conexao
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        this.l_erro.setVisible(false);
-        conecta.conexao();
+        conecta.conexao(); // chamada do metodo de conexão
     }
 
     /**
@@ -46,7 +48,6 @@ public class Login extends javax.swing.JFrame {
         b_login = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
         c_remember = new javax.swing.JCheckBox();
-        l_erro = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         l_register = new javax.swing.JLabel();
@@ -65,6 +66,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Media Player");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(new java.awt.Point(500, 200));
         setResizable(false);
 
         l_login.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
@@ -78,8 +80,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        l_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user.png"))); // NOI18N
         l_user.setText("Usuário");
 
+        l_senha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/key_16.png"))); // NOI18N
         l_senha.setText("Senha");
 
         t_senha.setToolTipText("Coloque aqui a sua senha");
@@ -115,42 +119,36 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        l_erro.setForeground(java.awt.Color.red);
-        l_erro.setText("nenhum");
-        l_erro.setToolTipText("");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(l_erro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(b_login, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(b_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(t_senha)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(c_remember)
-                                        .addComponent(t_user, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(4, 4, 4)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(l_senha))))
+                                .addComponent(b_login, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(b_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(t_senha)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c_remember)
+                                    .addComponent(t_user, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(4, 4, 4))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addComponent(l_login))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(l_user)))
+                                .addGap(52, 52, 52)
+                                .addComponent(l_user))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(l_senha)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -173,16 +171,16 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_login)
                     .addComponent(b_cancel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(l_erro)
-                .addGap(36, 36, 36))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         l_register.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        l_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add_male_user_64.png"))); // NOI18N
         l_register.setText("Registrar");
 
+        l_userName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user.png"))); // NOI18N
         l_userName.setText("Usuário");
 
         t_userName.setToolTipText("Coloque aqui o seu usuário");
@@ -192,16 +190,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        l_userSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/key_16.png"))); // NOI18N
         l_userSenha.setText("Senha");
 
         t_userSenha.setToolTipText("Coloque aqui a sua senha");
 
         t_userEmail.setToolTipText("Coloque aqui o seu email.");
 
+        l_userEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/yellow_mail_16.png"))); // NOI18N
         l_userEmail.setText("E-mail");
 
         t_confirmSenha.setToolTipText("Confirme a sua senha.");
 
+        l_confirmSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/key_16.png"))); // NOI18N
         l_confirmSenha.setText("Confirmar Senha");
 
         b_register.setText("Registrar");
@@ -226,38 +227,39 @@ public class Login extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(57, 57, 57)
+                                    .addComponent(l_userName))
+                                .addComponent(t_confirmSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(37, 37, 37)
+                                    .addComponent(l_confirmSenha))
+                                .addComponent(t_userEmail)
+                                .addComponent(t_userSenha)
+                                .addComponent(t_userName)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(48, 48, 48)
+                            .addComponent(l_userNivel))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(74, 74, 74)
+                            .addComponent(l_userEmail))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(74, 74, 74)
+                            .addComponent(l_userSenha))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(l_register))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(c_userNivel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(l_userName))
-                            .addComponent(t_confirmSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(l_confirmSenha))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(l_register))
-                            .addComponent(t_userEmail)
-                            .addComponent(t_userSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(t_userName)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(b_register, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(c_userNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(l_userNivel))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(l_userEmail))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(l_userSenha)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(65, 65, 65)
+                        .addComponent(b_register, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +286,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(l_userNivel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(c_userNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(b_register)
                 .addGap(6, 6, 6))
         );
@@ -317,72 +319,81 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void t_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_userActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_userActionPerformed
+  private void t_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_userActionPerformed
+      // TODO add your handling code here:
+  }//GEN-LAST:event_t_userActionPerformed
 
-    private void t_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_senhaActionPerformed
+  private void t_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_senhaActionPerformed
+      // TODO add your handling code here:
+  }//GEN-LAST:event_t_senhaActionPerformed
 
-    private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_loginActionPerformed
+  private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
 
-    private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
-        conecta.desconecta();
-        System.exit(0);
-    }//GEN-LAST:event_b_cancelActionPerformed
+  }//GEN-LAST:event_b_loginActionPerformed
 
-    private void c_rememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_rememberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_rememberActionPerformed
+  private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
+      conecta.desconecta();
+      System.exit(0);
+  }//GEN-LAST:event_b_cancelActionPerformed
 
-    private void t_userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_userNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_userNameActionPerformed
+  private void c_rememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_rememberActionPerformed
+      // TODO add your handling code here:
+  }//GEN-LAST:event_c_rememberActionPerformed
 
-    private void b_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_registerActionPerformed
-        try {
-            // Registrando pessoa no banco de dados
-            PreparedStatement pst = conecta.conn.prepareStatement("insert into usuario (user_name,user_email,user_password,user_nivel)values(?,?,?,?)");
-            if(c_userNivel.getSelectedItem() == c_userNivel.getItemAt(0)){ // Se for um usuário normal
-                pst.setString(1,t_userName.getText());
-                pst.setString(2,t_userEmail.getText());
-                pst.setString(3,t_userSenha.getText());
-                pst.setString(4,"1");
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(rootPane,"Registrado com sucesso");
-                dispose();
-                JanelaUser janelaUser = new JanelaUser();
-            }
-            else if(c_userNivel.getSelectedItem() == c_userNivel.getItemAt(1)){
-                Usuario user = new Usuario(t_userName.getText(),t_userEmail.getText(),t_userSenha.getText(),2);
-                TelaCodigoVIP codigovip = new TelaCodigoVIP();
-                codigovip.user = user;
-                dispose();
-                codigovip.setVisible(true);
-            }
-            else if(c_userNivel.getSelectedItem() == c_userNivel.getItemAt(2)){
-                Usuario user = new Usuario(t_userName.getText(),t_userEmail.getText(),t_userSenha.getText(),3);
-                TelaCodigoAdmin codigoadmin = new TelaCodigoAdmin();
-                codigoadmin.user = user;
-                dispose();
-                codigoadmin.setVisible(true);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(rootPane,"Erro na inserção!\n Erro:"+ ex);
-        }
-    }//GEN-LAST:event_b_registerActionPerformed
+  private void t_userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_userNameActionPerformed
+      // TODO add your handling code here:
+  }//GEN-LAST:event_t_userNameActionPerformed
 
-    private void c_userNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_userNivelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_userNivelActionPerformed
+  private void b_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_registerActionPerformed
+      try {
+          // Registrando pessoa no banco de dados
+          PreparedStatement pst = conecta.conn.prepareStatement("insert into usuario (user_name,user_email,user_password,user_nivel)values(?,?,?,?)"); // passagem de parametros para a inserção
+          PreparedStatement pst_playlist = conecta.conn.prepareStatement("insert into playlist(name_playlist,id_user_playlist)");
+          String strPassword = new String(t_userSenha.getPassword());
+          String strConfirmPassword = new String(t_confirmSenha.getPassword());
 
-    private void b_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_cancelMouseClicked
+          if (t_userName.getText().trim().equals("") || t_userEmail.getText().trim().equals("") || strPassword.trim().equals("") || strConfirmPassword.trim().equals("")) {
+              JOptionPane.showMessageDialog(rootPane, "Espaços obrigatórios sem preenchimento.");
+          } else if (strPassword.equals(strConfirmPassword)) { // Verificando se as senhas conferem
+              if (c_userNivel.getSelectedItem() == c_userNivel.getItemAt(0)) { // Se for um usuário normal
+                  pst.setString(1, t_userName.getText());
+                  pst.setString(2, t_userEmail.getText());
+                  pst.setString(3, strPassword);
+                  pst.setString(4, "1");
+                  pst.executeUpdate();
+                  JOptionPane.showMessageDialog(rootPane, "Registrado com sucesso");
+                  Login newLogin = new Login();
+                  newLogin.setVisible(true);
+                  dispose();
+              } else if (c_userNivel.getSelectedItem() == c_userNivel.getItemAt(1)) { // Se for um usuario VIP
+                  Usuario user = new Usuario(t_userName.getText(), t_userEmail.getText(), strPassword, 2);
+                  TelaCodigoVIP codigovip = new TelaCodigoVIP(); // Criar tela que pede código VIP
+                  codigovip.user = user; // Passando usuário para proxima tela
+                  dispose(); // Fechando tela de login
+                  codigovip.setVisible(true); // Abrindo tela de Codigo VIP
+              } else if (c_userNivel.getSelectedItem() == c_userNivel.getItemAt(2)) {
+                  Usuario user = new Usuario(t_userName.getText(), t_userEmail.getText(), strPassword, 3);
+                  TelaCodigoAdmin codigoadmin = new TelaCodigoAdmin();
+                  codigoadmin.user = user;
+                  dispose();
+                  codigoadmin.setVisible(true);
+              }
+          } else { // Se as senhas não conferem
+              JOptionPane.showMessageDialog(rootPane, "As senhas não conferem.");
+          }
+      } catch (SQLException ex) {
+          Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+          JOptionPane.showMessageDialog(rootPane, "Erro na inserção!\n Erro:" + ex);
+      }
+  }//GEN-LAST:event_b_registerActionPerformed
 
-    }//GEN-LAST:event_b_cancelMouseClicked
+  private void c_userNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_userNivelActionPerformed
+      // TODO add your handling code here:
+  }//GEN-LAST:event_c_userNivelActionPerformed
+
+  private void b_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_cancelMouseClicked
+
+  }//GEN-LAST:event_b_cancelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -391,7 +402,7 @@ public class Login extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+    * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -429,7 +440,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel l_confirmSenha;
-    private javax.swing.JLabel l_erro;
     private javax.swing.JLabel l_login;
     private javax.swing.JLabel l_register;
     private javax.swing.JLabel l_senha;
