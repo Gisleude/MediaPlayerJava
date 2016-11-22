@@ -13,11 +13,10 @@ import model.Usuario;
  */
 public class JanelaUserVIP extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JanelaUser
-     */
-    Usuario usuario;
+    
+    private Usuario usuario;
     public JanelaUserVIP() {
+        this.usuario = usuario;
         initComponents();
         this.l_q_volume.setText(Integer.toString(this.s_volume.getValue())+"%");
     }
@@ -495,4 +494,18 @@ public class JanelaUserVIP extends javax.swing.JFrame {
     private javax.swing.JTextField t_music;
     private javax.swing.JTextField t_year;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

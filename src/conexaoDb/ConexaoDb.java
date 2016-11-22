@@ -14,8 +14,8 @@ public class ConexaoDb {
     public ResultSet rs;  // Responsável por armazenar o resultado de uma pesquisa passada para o statement
     private String driver = "com.mysql.jdbc.Driver"; // Responsável por identificar o serviço de banco de dados
     private String caminho = "jdbc:mysql://localhost/MediaPlayer"; // Responsável por setar o local do banco de dados
-    private String usuario = "root";
-    private String senha = "gis995511";
+    private String usuario = "master";
+    private String senha = "";
     public Connection conn; // Responsável pro realizar a conexão com o banco de dados
     
     // Metodo responsável pro realizar conexão com o banco de dados

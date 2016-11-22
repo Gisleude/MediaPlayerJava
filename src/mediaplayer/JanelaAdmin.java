@@ -5,6 +5,8 @@
  */
 package mediaplayer;
 
+import model.Usuario;
+
 
 /**
  *
@@ -15,7 +17,9 @@ public class JanelaAdmin extends javax.swing.JFrame {
     /**
      * Creates new form JanelaUser
      */
+    private Usuario usuario;
     public JanelaAdmin() {
+        this.usuario = usuario;
         initComponents();
         this.l_q_volume.setText(Integer.toString(this.s_volume.getValue())+"%");
     }
@@ -528,4 +532,18 @@ public class JanelaAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField t_music;
     private javax.swing.JTextField t_year;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

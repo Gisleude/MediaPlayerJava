@@ -47,7 +47,6 @@ public class Login extends javax.swing.JFrame {
         t_senha = new javax.swing.JPasswordField();
         b_login = new javax.swing.JButton();
         b_cancel = new javax.swing.JButton();
-        c_remember = new javax.swing.JCheckBox();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         l_register = new javax.swing.JLabel();
@@ -112,45 +111,35 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        c_remember.setText("Lembrar-me");
-        c_remember.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c_rememberActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(b_login, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(b_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(t_senha)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c_remember)
-                                    .addComponent(t_user, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(4, 4, 4))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addComponent(l_login))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(l_user))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
                                 .addComponent(l_senha)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(t_user, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(b_login, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(b_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                            .addComponent(t_senha))))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(l_user)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,8 +155,6 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(t_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(c_remember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_login)
                     .addComponent(b_cancel))
@@ -328,17 +315,49 @@ public class Login extends javax.swing.JFrame {
   }//GEN-LAST:event_t_senhaActionPerformed
 
   private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
-
+      conecta.executaSQL("SELECT user_name, user_email, user_password, user_nivel FROM usuario");
+      String strPassword = new String(t_senha.getPassword());
+      String strUser = new String(t_user.getText());
+      if (strUser.trim().equals("") || strPassword.trim().equals("")) {
+          JOptionPane.showMessageDialog(rootPane, "Espaços obrigatórios sem preenchimento.");
+      } else {
+          try {
+              while (conecta.rs.next()) {
+                  if (strUser.equals(conecta.rs.getString(1)) && strPassword.equals(conecta.rs.getString(3))) {
+                      Usuario usuario = new Usuario(conecta.rs.getString(1), conecta.rs.getString(2), conecta.rs.getString(3), Integer.parseInt(conecta.rs.getString(4)));
+                      // selecionando tipo de janela a ser exibida pelo nivel de usuario
+                      if (Integer.parseInt(conecta.rs.getString(4)) == 1) {
+                          JanelaUser ju = new JanelaUser();
+                          ju.setUsuario(usuario);
+                          ju.setVisible(true);
+                          dispose();
+                      } else if (Integer.parseInt(conecta.rs.getString(4)) == 2) {
+                          JanelaUserVIP juv = new JanelaUserVIP();
+                          juv.setUsuario(usuario);
+                          juv.setVisible(true);
+                          dispose();
+                      }
+                      if (Integer.parseInt(conecta.rs.getString(4)) == 3) {
+                          JanelaAdmin ja = new JanelaAdmin();
+                          ja.setUsuario(usuario);
+                          ja.setVisible(true);
+                          dispose();
+                      }
+                  } else if (strUser.equals(conecta.rs.getString(1)) && !strPassword.equals(conecta.rs.getString(3))) {
+                      // Se não achar usuario no banco de dados
+                      JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha incorretos.");
+                  }
+              }
+          } catch (SQLException ex) {
+              Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      }
   }//GEN-LAST:event_b_loginActionPerformed
 
   private void b_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelActionPerformed
       conecta.desconecta();
       System.exit(0);
   }//GEN-LAST:event_b_cancelActionPerformed
-
-  private void c_rememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_rememberActionPerformed
-      // TODO add your handling code here:
-  }//GEN-LAST:event_c_rememberActionPerformed
 
   private void t_userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_userNameActionPerformed
       // TODO add your handling code here:
@@ -434,7 +453,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton b_cancel;
     private javax.swing.JButton b_login;
     private javax.swing.JButton b_register;
-    private javax.swing.JCheckBox c_remember;
     private javax.swing.JComboBox<String> c_userNivel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

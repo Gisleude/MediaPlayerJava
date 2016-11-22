@@ -18,6 +18,7 @@ public class Usuario {
     private int nivel_acesso;
     private ArrayList<Playlist> playlists;
 
+
     /**
      * @return the nome
      */
